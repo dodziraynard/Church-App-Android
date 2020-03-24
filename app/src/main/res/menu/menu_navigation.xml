@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/dashboard"
+        android:title="Dashboard"
+        android:icon="@drawable/ic_dashboard_black_24dp"/>
+
+    <item
+        android:id="@+id/preaching"
+        android:title="Preachings"
+        android:icon="@drawable/ic_record_voice_over_black_24dp"/>
+
+    <item
+        android:id="@+id/leadership"
+        android:title="Leadership"
+        android:icon="@drawable/ic_message_black_24dp"/>
+
+    <item
+        android:id="@+id/notifications"
+        android:title="Notifications"
+        android:icon="@drawable/ic_notifications_active_black_24dp"/>
+
+    <item
+        android:id="@+id/downloads"
+        android:title="Downloads"
+        android:icon="@drawable/ic_file_download_black_24dp"/>
+</menu>

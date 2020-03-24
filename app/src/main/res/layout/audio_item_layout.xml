@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="50dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/audio_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/white"
+        android:layout_margin="5dp"
+        android:elevation="40dp"
+        app:cardElevation="5dp"
+        app:cardCornerRadius="5dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:layout_margin="0dp">
+
+                <ImageView
+                    android:id="@+id/image"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@mipmap/back"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingRight="5dp">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toStartOf="@id/btnPlay"
+                            android:text="God is good long long title"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginStart="5dp"
+                            android:singleLine="true"
+                            android:ellipsize="middle"
+                            android:textSize="15sp"
+                            android:textColor="@android:color/black"
+                            android:backgroundTint="@android:color/white"/>
+
+                        <Button
+                            android:id="@+id/btnPlay"
+                            android:layout_toStartOf="@+id/btnDownload"
+                            android:layout_width="30dp"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:drawableTop="@drawable/ic_play_circle_outline_black_24dp"
+                            android:backgroundTint="@android:color/white"/>
+
+                        <Button
+                            android:id="@+id/btnDownload"
+                            android:layout_width="30dp"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:drawableTop="@drawable/ic_file_download_black_24dp"
+                            android:backgroundTint="@android:color/white"
+                            android:layout_alignParentEnd="true">
+                        </Button>
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/desc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="God is good God is good God is good"
+                        android:singleLine="true"
+                        android:layout_marginStart="5dp"
+                        android:ellipsize="middle"
+                        android:textSize="15sp"
+                        android:textColor="@android:color/darker_gray"
+                        android:backgroundTint="@android:color/white"/>
+
+                    <TextView
+                        android:id="@+id/preacher"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Rev. Pastor Dodzi"
+                        android:singleLine="true"
+                        android:layout_marginStart="5dp"
+                        android:ellipsize="middle"
+                        android:textSize="15sp"
+                        android:textColor="@android:color/darker_gray"
+                        android:backgroundTint="@android:color/white"/>
+
+                    <TextView
+                        android:id="@+id/date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="12/01/2010"
+                        android:textAlignment="textEnd"
+                        android:maxLines="1"
+                        android:textStyle="italic"
+                        android:textSize="12sp"
+                        android:textColor="@android:color/darker_gray"
+                        android:backgroundTint="@android:color/white"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <SeekBar
+                android:id="@+id/seekBar"
+                android:layout_below="@id/content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"/>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>
