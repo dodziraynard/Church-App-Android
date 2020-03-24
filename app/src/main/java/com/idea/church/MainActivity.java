@@ -6,34 +6,58 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.Manifest;
+import android.view.MenuItem;
 import android.widget.Toast;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity{
     private static final String TAG = "HRD";
+    DashboardFragment dashboardFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Toolbar
+        // Set custom toolbar
         Toolbar toolbar = findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
 
-        //Set bottom navigation
-        BottomNavigation bottomNavigation = new BottomNavigation();
-        // Set dashboard
+        // Set dashboard on main screen
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.bottom_navigation_frame, bottomNavigation);
+        dashboardFragment = new DashboardFragment();
+        ft.replace(R.id.mainFrame, dashboardFragment);
         ft.commit();
+
+        //Bottom Navigation item handling
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                dashboardFragment = new DashboardFragment();
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+
+                switch (item.getItemId()){
+                    case R.id.dashboard:
+                        break;
+                    default:
+                        ft.replace(R.id.mainFrame, dashboardFragment);
+                        ft.commit();
+                        break;
+                }
+                return true;
+            }
+        });
     }
 
-    // Permissions
+    // PERMISSIONS HANDLING
     private static final String[] PERMISSIONS = {
             Manifest.permission.INTERNET,
             Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -71,16 +95,5 @@ public class MainActivity extends AppCompatActivity{
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && permissionsDenied()){
             requestPermissions(PERMISSIONS, REQUEST_PERMISSIONS_CODE);
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_action_bar, menu);
-
-//        MenuItem menuItem = menu.findItem(R.id.search);
-//        SearchView searchView = (SearchView) menuItem.getActionView();
-//        searchView.setOnQueryTextListener(this);
-
-        return super.onCreateOptionsMenu(menu);
     }
 }

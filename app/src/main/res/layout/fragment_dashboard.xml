@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".DashboardFragment">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/back">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <GridLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:columnCount="3"
+                android:padding="10dp"
+                android:rowCount="3"
+                android:orientation="horizontal"
+                android:layout_gravity="center">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_row="0"
+                    android:layout_column="0"
+                    android:layout_columnSpan="1"
+                    android:gravity="fill"
+                    android:layout_margin="10dp">
+
+                    <ImageButton
+                        android:id="@+id/preachingBtn"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/home_photos" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Preachings"
+                        app:itemIconTint="@drawable/selector"
+                        app:itemTextColor="@drawable/selector"
+                        android:textAlignment="center"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_row="0"
+                    android:layout_column="1"
+                    android:layout_columnSpan="1"
+                    android:gravity="fill"
+                    android:layout_margin="10dp">
+
+                    <Button
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@mipmap/back"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Materials"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/white"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_row="0"
+                    android:layout_column="2"
+                    android:layout_columnSpan="1"
+                    android:gravity="fill"
+                    android:layout_margin="10dp">
+
+                    <Button
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@mipmap/back"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Videos"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/white"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_row="1"
+                    android:layout_column="0"
+                    android:layout_columnSpan="1"
+                    android:gravity="fill"
+                    android:layout_margin="10dp">
+
+                    <Button
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@mipmap/back"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Give"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/white"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_row="1"
+                    android:layout_column="2"
+                    android:layout_columnSpan="1"
+                    android:gravity="fill"
+                    android:layout_margin="10dp">
+
+                    <Button
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@mipmap/back"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Help"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/white"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/admin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_row="1"
+                    android:layout_column="1"
+                    android:layout_columnSpan="1"
+                    android:gravity="fill"
+                    android:layout_margin="10dp">
+
+                    <Button
+                        android:id="@+id/adminBtn"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@mipmap/back"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Admin"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/white"/>
+                </LinearLayout>
+            </GridLayout>
+        </ScrollView>
+
+    </RelativeLayout>
+
+</FrameLayout>

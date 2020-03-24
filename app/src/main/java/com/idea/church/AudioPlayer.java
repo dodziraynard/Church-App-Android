@@ -53,7 +53,6 @@
 //        ContentResolver contentResolver = getContentResolver();
 //
 //        Uri uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-//        Log.i("MUSIC", uri.toString());
 //
 //        String selection = MediaStore.Audio.Media.IS_MUSIC + "!= 0";
 //        String sortOrder = MediaStore.Audio.Media.TITLE + " ASC";
@@ -67,11 +66,6 @@
 //                String album = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ALBUM));
 //                String artist = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST));
 //
-//                Log.i("MUSIC", "------------------------------");
-//
-//                Log.i("MUSIC", title);
-//
-//                Log.i("MUSIC", "------------------------------");
 //                // Save to audioList
 //                audioList.add(new Audio(data, title, album, artist));
 //            }
