@@ -57,26 +57,26 @@
                             android:textColor="@android:color/black"
                             android:backgroundTint="@android:color/white"/>
 
-                        <Button
-                            android:id="@+id/btnPlay"
-                            android:layout_toStartOf="@+id/btnDownload"
-                            android:layout_width="30dp"
-                            android:layout_height="40dp"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginEnd="10dp"
-                            android:drawableTop="@drawable/ic_play_circle_outline_black_24dp"
-                            android:backgroundTint="@android:color/white"/>
+<!--                        <Button-->
+<!--                            android:id="@+id/btnPlay"-->
+<!--                            android:layout_toStartOf="@+id/btnDownload"-->
+<!--                            android:layout_width="30dp"-->
+<!--                            android:layout_height="40dp"-->
+<!--                            android:layout_marginStart="10dp"-->
+<!--                            android:layout_marginEnd="10dp"-->
+<!--                            android:drawableTop="@drawable/ic_play_circle_outline_black_24dp"-->
+<!--                            android:backgroundTint="@android:color/white"/>-->
 
-                        <Button
-                            android:id="@+id/btnPause"
-                            android:visibility="invisible"
-                            android:layout_toStartOf="@+id/btnDownload"
-                            android:layout_width="30dp"
-                            android:layout_height="40dp"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginEnd="10dp"
-                            android:drawableTop="@drawable/ic_pause_circle_outline_black_24dp"
-                            android:backgroundTint="@android:color/white"/>
+<!--                        <Button-->
+<!--                            android:id="@+id/btnPause"-->
+<!--                            android:visibility="invisible"-->
+<!--                            android:layout_toStartOf="@+id/btnDownload"-->
+<!--                            android:layout_width="30dp"-->
+<!--                            android:layout_height="40dp"-->
+<!--                            android:layout_marginStart="10dp"-->
+<!--                            android:layout_marginEnd="10dp"-->
+<!--                            android:drawableTop="@drawable/ic_pause_circle_outline_black_24dp"-->
+<!--                            android:backgroundTint="@android:color/white"/>-->
 
                         <Button
                             android:id="@+id/btnDownload"

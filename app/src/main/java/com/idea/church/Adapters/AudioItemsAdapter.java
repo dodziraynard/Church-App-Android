@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.idea.church.Models.Audio;
 import com.idea.church.R;
@@ -23,8 +24,7 @@ public class AudioItemsAdapter extends RecyclerView.Adapter<AudioItemsAdapter.Au
 
     // Listener interface
     public interface OnItemClickListener{
-        void onItemPlayClickListener(View itemView, int position);
-        void onItemPauseClickListener(View itemView, int position);
+        void onCardClickListener(View itemView, int position);
         void setOnItemDownloadListener(View buttonDownload, int layoutPosition);
     }
 
@@ -60,13 +60,12 @@ public class AudioItemsAdapter extends RecyclerView.Adapter<AudioItemsAdapter.Au
     }
 
     public class AudioViewHolder extends RecyclerView.ViewHolder {
-        Button buttonPlay;
-        Button buttonPause;
         Button buttonDownload;
         TextView title;
         TextView preacher;
         TextView date;
         TextView desc;
+        CardView card;
 
         AudioViewHolder(View itemView){
             super(itemView);
@@ -76,29 +75,17 @@ public class AudioItemsAdapter extends RecyclerView.Adapter<AudioItemsAdapter.Au
             desc = itemView.findViewById(R.id.desc);
             date = itemView.findViewById(R.id.date);
 
-            buttonPlay = itemView.findViewById(R.id.btnPlay);
-            buttonPause = itemView.findViewById(R.id.btnPause);
             buttonDownload = itemView.findViewById(R.id.btnDownload);
+            card = itemView.findViewById(R.id.audio_item);
 
-            buttonPlay.setOnClickListener(new View.OnClickListener() {
+            card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    buttonPause.setVisibility(View.VISIBLE);
-                    buttonPlay.setVisibility(View.GONE);
                     if (listener != null)
-                        listener.onItemPlayClickListener(buttonPlay, getLayoutPosition());
+                        listener.onCardClickListener(card, getLayoutPosition());
                 }
             });
 
-            buttonPause.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    buttonPause.setVisibility(View.GONE);
-                    buttonPlay.setVisibility(View.VISIBLE);
-                    if (listener != null)
-                        listener.onItemPauseClickListener(buttonPause, getLayoutPosition());
-                }
-            });
             buttonDownload.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

@@ -2,7 +2,6 @@ package com.idea.church;
 
 import android.app.IntentService;
 import android.app.PendingIntent;
-import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -21,6 +20,7 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+
 import java.io.IOException;
 
 public class MediaPlayerService extends IntentService implements MediaPlayer.OnCompletionListener,
@@ -33,6 +33,10 @@ public class MediaPlayerService extends IntentService implements MediaPlayer.OnC
 
     //path to the audio file
     private String mediaSource;
+
+    //Intents
+    Intent sendInfo;
+
 
     //MediaSession
     private MediaSessionManager mediaSessionManager;
@@ -80,31 +84,6 @@ public class MediaPlayerService extends IntentService implements MediaPlayer.OnC
         mediaPlayer.prepareAsync();
     }
 
-    private PendingIntent playbackAction(int actionNumber) {
-        Intent playbackAction = new Intent(this, MediaPlayerService.class);
-        switch (actionNumber) {
-            case 0:
-                // Play
-                playbackAction.setAction(ACTION_PLAY);
-                return PendingIntent.getService(this, actionNumber, playbackAction, 0);
-            case 1:
-                // Pause
-                playbackAction.setAction(ACTION_PAUSE);
-                return PendingIntent.getService(this, actionNumber, playbackAction, 0);
-            case 2:
-                // Next track
-                playbackAction.setAction(ACTION_NEXT);
-                return PendingIntent.getService(this, actionNumber, playbackAction, 0);
-            case 3:
-                // Previous track
-                playbackAction.setAction(ACTION_PREVIOUS);
-                return PendingIntent.getService(this, actionNumber, playbackAction, 0);
-            default:
-                break;
-        }
-        return null;
-    }
-
     private void handleIncomingActions(Intent playbackAction) {
         if (playbackAction == null || playbackAction.getAction() == null) return;
 
@@ -127,6 +106,8 @@ public class MediaPlayerService extends IntentService implements MediaPlayer.OnC
     private void playMedia() {
         if (!mediaPlayer.isPlaying()) {
             mediaPlayer.start();
+            PreachingsActivity.serviceAudioPaused = false;
+            sendDataToActivity();
         }
     }
 
@@ -141,6 +122,7 @@ public class MediaPlayerService extends IntentService implements MediaPlayer.OnC
         if (mediaPlayer.isPlaying()) {
             mediaPlayer.pause();
             resumePosition = mediaPlayer.getCurrentPosition();
+            PreachingsActivity.serviceAudioPaused = true;
         }
     }
 
@@ -148,6 +130,8 @@ public class MediaPlayerService extends IntentService implements MediaPlayer.OnC
         if (!mediaPlayer.isPlaying()) {
             mediaPlayer.seekTo(resumePosition);
             mediaPlayer.start();
+            PreachingsActivity.serviceAudioPaused = false;
+            sendDataToActivity();
         }
     }
 
@@ -223,7 +207,6 @@ public class MediaPlayerService extends IntentService implements MediaPlayer.OnC
         @Override
         public void onReceive(Context context, Intent intent) {
             mediaSource = new StorageUtil(getApplicationContext()).getMediaSource();
-
             //A PLAY_NEW_AUDIO action received
             //reset mediaPlayer to play the new Audio
             stopMedia();
@@ -242,6 +225,14 @@ public class MediaPlayerService extends IntentService implements MediaPlayer.OnC
 
     // Resume audio
     private BroadcastReceiver resumeAudio = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            resumeMedia();
+        }
+    };
+
+    // Resume audio
+    private BroadcastReceiver seekTo = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             resumeMedia();
@@ -323,6 +314,7 @@ public class MediaPlayerService extends IntentService implements MediaPlayer.OnC
         });
     }
 
+
     // Binder given to clients
     private final IBinder iBinder = new LocalBinder();
 
@@ -334,6 +326,33 @@ public class MediaPlayerService extends IntentService implements MediaPlayer.OnC
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
 
+    }
+
+    private void sendDataToActivity()
+    {
+        if(mediaPlayer.isPlaying()) {
+            new Thread(){
+                public void run(){
+                    if (mediaPlayer == null){return;}
+
+                    int duration  = mediaPlayer.getDuration()/1000;
+                    int pos = 0;
+                    while(duration >= pos && mediaPlayer != null){
+                        sendInfo.putExtra("DURATION", duration);
+                        sendInfo.putExtra("ELAPSED", pos);
+                        sendBroadcast(sendInfo);
+
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        pos++;
+                    }
+                }
+            }.start();
+
+        }
     }
 
     @Override
@@ -428,6 +447,10 @@ public class MediaPlayerService extends IntentService implements MediaPlayer.OnC
         } catch (NullPointerException e) {
             stopSelf();
         }
+
+        // Intents
+        sendInfo = new Intent();
+        sendInfo.setAction("MEDIA_PLAYER_INFO");
 
         //Request audio focus
         if (!requestAudioFocus()) {
