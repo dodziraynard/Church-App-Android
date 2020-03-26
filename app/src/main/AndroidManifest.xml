@@ -3,6 +3,7 @@
     package="com.idea.church">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <permission android:name="android.permission.MEDIA_CONTENT_CONTROL" />
@@ -16,10 +17,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <service
+            android:name=".DownloadService"
+            android:exported="false"></service>
+
+        <activity android:name=".VideoPlayerActivity" />
+        <activity android:name=".VideoActivity" />
+
         <service android:name=".MediaPlayerService" />
 
-        <activity android:name=".PreachingsActivity"></activity>
-        <activity android:name=".AdminActivity"></activity>
+        <activity android:name=".PreachingsActivity" />
+        <activity android:name=".AdminActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

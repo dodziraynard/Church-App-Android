@@ -1,7 +1,6 @@
 package com.idea.church;
 
 import android.app.IntentService;
-import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -21,6 +20,8 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
+import com.idea.church.Models.Audio;
+
 import java.io.IOException;
 
 public class MediaPlayerService extends IntentService implements MediaPlayer.OnCompletionListener,
@@ -32,8 +33,7 @@ public class MediaPlayerService extends IntentService implements MediaPlayer.OnC
     private AudioManager audioManager;
 
     //path to the audio file
-    private String mediaSource;
-
+    private Audio audio;
     //Intents
     Intent sendInfo;
 
@@ -75,7 +75,7 @@ public class MediaPlayerService extends IntentService implements MediaPlayer.OnC
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         try {
             // Set the data source to the mediaFile location
-            mediaPlayer.setDataSource(mediaSource);
+            mediaPlayer.setDataSource(audio.getData());
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -107,7 +107,6 @@ public class MediaPlayerService extends IntentService implements MediaPlayer.OnC
         if (!mediaPlayer.isPlaying()) {
             mediaPlayer.start();
             PreachingsActivity.serviceAudioPaused = false;
-            sendDataToActivity();
         }
     }
 
@@ -119,19 +118,22 @@ public class MediaPlayerService extends IntentService implements MediaPlayer.OnC
     }
 
     private void pauseMedia() {
-        if (mediaPlayer.isPlaying()) {
-            mediaPlayer.pause();
-            resumePosition = mediaPlayer.getCurrentPosition();
-            PreachingsActivity.serviceAudioPaused = true;
+        if (mediaPlayer != null){
+            if (mediaPlayer.isPlaying()) {
+                mediaPlayer.pause();
+                resumePosition = mediaPlayer.getCurrentPosition();
+                PreachingsActivity.serviceAudioPaused = true;
+            }
         }
     }
 
     private void resumeMedia() {
-        if (!mediaPlayer.isPlaying()) {
-            mediaPlayer.seekTo(resumePosition);
-            mediaPlayer.start();
-            PreachingsActivity.serviceAudioPaused = false;
-            sendDataToActivity();
+        if (mediaPlayer != null){
+            if (!mediaPlayer.isPlaying()) {
+                mediaPlayer.seekTo(resumePosition);
+                mediaPlayer.start();
+                PreachingsActivity.serviceAudioPaused = false;
+            }
         }
     }
 
@@ -206,11 +208,13 @@ public class MediaPlayerService extends IntentService implements MediaPlayer.OnC
     private BroadcastReceiver playNewAudio = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            mediaSource = new StorageUtil(getApplicationContext()).getMediaSource();
+            audio = new StorageUtil(getApplicationContext()).getAudio();
             //A PLAY_NEW_AUDIO action received
             //reset mediaPlayer to play the new Audio
-            stopMedia();
-            mediaPlayer.reset();
+            if (mediaPlayer != null){
+                stopMedia();
+                mediaPlayer.reset();
+            }
             initMediaPlayer();
         }
     };
@@ -232,10 +236,11 @@ public class MediaPlayerService extends IntentService implements MediaPlayer.OnC
     };
 
     // Resume audio
-    private BroadcastReceiver seekTo = new BroadcastReceiver() {
+    private BroadcastReceiver seekAudio = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            resumeMedia();
+            int position = new StorageUtil(getApplicationContext()).getSeekPosition();
+            mediaPlayer.seekTo(position);
         }
     };
 
@@ -247,10 +252,12 @@ public class MediaPlayerService extends IntentService implements MediaPlayer.OnC
         IntentFilter filterPlay = new IntentFilter(PreachingsActivity.Broadcast_PLAY_NEW_AUDIO);
         IntentFilter filterPause = new IntentFilter(PreachingsActivity.Broadcast_PAUSE_AUDIO);
         IntentFilter filterResume = new IntentFilter(PreachingsActivity.Broadcast_RESUME_AUDIO);
+        IntentFilter filterSeek = new IntentFilter(PreachingsActivity.Broadcast_SEEK_AUDIO);
 
         registerReceiver(playNewAudio, filterPlay);
         registerReceiver(resumeAudio, filterResume);
         registerReceiver(pauseAudio, filterPause);
+        registerReceiver(seekAudio, filterSeek);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -325,41 +332,37 @@ public class MediaPlayerService extends IntentService implements MediaPlayer.OnC
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
+        while(mediaPlayer != null){
+            try {
+                int duration = mediaPlayer.getDuration() / 1000;
+                int pos = mediaPlayer.getCurrentPosition() / 1000;
 
+                if (mediaPlayer.isPlaying()) {
+                    sendDataToActivity(duration, pos);
+                }
+            } catch (IllegalStateException e){
+                e.printStackTrace();
+            }
+
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
-    private void sendDataToActivity()
-    {
-        if(mediaPlayer.isPlaying()) {
-            new Thread(){
-                public void run(){
-                    if (mediaPlayer == null){return;}
-
-                    int duration  = mediaPlayer.getDuration()/1000;
-                    int pos = 0;
-                    while(duration >= pos && mediaPlayer != null){
-                        sendInfo.putExtra("DURATION", duration);
-                        sendInfo.putExtra("ELAPSED", pos);
-                        sendBroadcast(sendInfo);
-
-                        try {
-                            Thread.sleep(1000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        pos++;
-                    }
-                }
-            }.start();
-
-        }
+    private void sendDataToActivity(int duration, int pos) {
+        sendInfo.putExtra("DURATION", duration);
+        sendInfo.putExtra("ELAPSED", pos);
+        sendInfo.putExtra("title", audio.getTitle());
+        sendBroadcast(sendInfo);
     }
 
     @Override
     public void onBufferingUpdate(MediaPlayer mp, int percent) {
         //Invoked indicating buffering status of
         //a media resource being streamed over the network.
-
     }
 
     @Override
@@ -398,6 +401,8 @@ public class MediaPlayerService extends IntentService implements MediaPlayer.OnC
     @Override
     public void onPrepared(MediaPlayer mp) {
         //Invoked when the media source is ready for playback.
+        sendInfo.putExtra("LOADING_PERCENT", true);
+        sendBroadcast(sendInfo);
         playMedia();
     }
 
@@ -443,7 +448,7 @@ public class MediaPlayerService extends IntentService implements MediaPlayer.OnC
     public int onStartCommand(Intent intent, int flags, int startId) {
         try {
             //An audio file is passed to the service through putExtra();
-             mediaSource = new StorageUtil(getApplicationContext()).getMediaSource();
+             audio = new StorageUtil(getApplicationContext()).getAudio();
         } catch (NullPointerException e) {
             stopSelf();
         }
@@ -475,16 +480,19 @@ public class MediaPlayerService extends IntentService implements MediaPlayer.OnC
             stopMedia();
             mediaPlayer.release();
         }
+
         removeAudioFocus();
         //Disable the PhoneStateListener
         if (phoneStateListener != null) {
             telephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_NONE);
         }
 
-
         //unregister BroadcastReceivers
         unregisterReceiver(becomingNoisyReceiver);
         unregisterReceiver(playNewAudio);
+        unregisterReceiver(resumeAudio);
+        unregisterReceiver(pauseAudio);
+        unregisterReceiver(seekAudio);
 
         //clear cached playlist
         new StorageUtil(getApplicationContext()).clearCachedAudioPlaylist();

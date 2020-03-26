@@ -17,9 +17,15 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+
 public class MainActivity extends AppCompatActivity{
     private static final String TAG = "HRD";
+    private static int CURRENT_FRAGMENT_ID;
+    private static final String CURRENT_FRAGMENT = "CURRENT_FRAGMENT";
+
     DashboardFragment dashboardFragment;
+    DownloadsFragment downloadsFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,38 +36,60 @@ public class MainActivity extends AppCompatActivity{
         Toolbar toolbar = findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
 
-        // Set dashboard on main screen
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        dashboardFragment = new DashboardFragment();
-        ft.replace(R.id.mainFrame, dashboardFragment);
-        ft.commit();
+        if(savedInstanceState != null){
+            if (savedInstanceState.containsKey(CURRENT_FRAGMENT)) {
+                CURRENT_FRAGMENT_ID = savedInstanceState.getInt(CURRENT_FRAGMENT);
+                navigateBottomNavigationBar(CURRENT_FRAGMENT_ID);
+            }
+        } else{
+            navigateBottomNavigationBar(R.id.dashboard);
+        }
 
         //Bottom Navigation item handling
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                dashboardFragment = new DashboardFragment();
-                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-
-                switch (item.getItemId()){
-                    case R.id.dashboard:
-                        break;
-                    default:
-                        ft.replace(R.id.mainFrame, dashboardFragment);
-                        ft.commit();
-                        break;
-                }
+                int id = item.getItemId();
+                CURRENT_FRAGMENT_ID = id;
+                navigateBottomNavigationBar(id);
                 return true;
             }
         });
     }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putInt(CURRENT_FRAGMENT, CURRENT_FRAGMENT_ID);
+        super.onSaveInstanceState(outState);
+    }
+
+    void navigateBottomNavigationBar(int id){
+        dashboardFragment = new DashboardFragment();
+        downloadsFragment = new DownloadsFragment();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+
+        switch (id){
+            case R.id.downloads:
+                ft.replace(R.id.mainFrame, downloadsFragment);
+                ft.commit();
+                break;
+            default:
+                ft.replace(R.id.mainFrame, dashboardFragment);
+                ft.commit();
+                break;
+        }
+    }
+
+
+
 
     // PERMISSIONS HANDLING
     private static final String[] PERMISSIONS = {
             Manifest.permission.INTERNET,
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.READ_PHONE_STATE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
     };
     private static final int REQUEST_PERMISSIONS_CODE = 14;
     private static final int PERMISSIONS_COUNT = PERMISSIONS.length;

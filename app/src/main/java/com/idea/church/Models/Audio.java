@@ -3,8 +3,6 @@ package com.idea.church.Models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.io.Serializable;
-
 public class Audio implements Parcelable {
 
     private String data;

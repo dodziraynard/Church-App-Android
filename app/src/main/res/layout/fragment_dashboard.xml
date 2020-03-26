@@ -87,10 +87,11 @@
                     android:gravity="fill"
                     android:layout_margin="10dp">
 
-                    <Button
+                    <ImageButton
+                        android:id="@+id/videoBtn"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:background="@mipmap/back"/>
+                        android:background="@drawable/home_photos" />
 
                     <TextView
                         android:layout_width="match_parent"

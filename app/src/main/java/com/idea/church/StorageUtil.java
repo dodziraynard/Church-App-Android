@@ -9,34 +9,52 @@ import com.idea.church.Models.Audio;
 
 import java.lang.reflect.Type;
 
-public class StorageUtil {
+class StorageUtil {
     private final String STORAGE = "com.idea.church.STORAGE";
     private SharedPreferences preferences;
     private Context context;
 
     private Audio audio;
 
-    public StorageUtil(Context context) {
+    StorageUtil(Context context) {
         this.context = context;
     }
 
 
-    public void clearCachedAudioPlaylist() {
+    void clearCachedAudioPlaylist() {
         preferences = context.getSharedPreferences(STORAGE, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.clear();
         editor.apply();
     }
 
-    public void storeMediaSource(String media) {
+    void storeAudio(Audio audio) {
         preferences = context.getSharedPreferences(STORAGE, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("media", media);
+        Gson gson = new Gson();
+        String json = gson.toJson(audio);
+        editor.putString("audio", json);
         editor.apply();
     }
 
-    public String getMediaSource() {
+    void storeSeekPosition(int progress) {
         preferences = context.getSharedPreferences(STORAGE, Context.MODE_PRIVATE);
-        return preferences.getString("media", null);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt("progress", progress);
+        editor.apply();
+    }
+
+    int getSeekPosition() {
+        preferences = context.getSharedPreferences(STORAGE, Context.MODE_PRIVATE);
+        return preferences.getInt("progress", 0);
+    }
+
+    Audio getAudio() {
+        preferences = context.getSharedPreferences(STORAGE, Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = preferences.getString("audio", null);
+        Type type = new TypeToken<Audio>() {
+        }.getType();
+        return gson.fromJson(json, type);
     }
 }

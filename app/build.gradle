@@ -31,5 +31,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     implementation group: 'com.google.code.gson', name: 'gson', version: '2.7', changing: true
+    implementation 'com.mindorks.android:prdownloader:0.5.0'
 
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 }
