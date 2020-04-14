@@ -3,14 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/dashboard"
-        android:title="Dashboard"
-        android:icon="@drawable/ic_dashboard_black_24dp"/>
-
-    <item
-        android:id="@+id/preaching"
+        android:id="@+id/devotion"
         android:title="Devotion"
-        android:icon="@drawable/ic_record_voice_over_black_24dp"/>
+        android:icon="@drawable/ic_spa"/>
 
     <item
         android:id="@+id/notifications"
@@ -18,9 +13,14 @@
         android:icon="@drawable/ic_notifications_active_black_24dp"/>
 
     <item
+        android:id="@+id/dashboard"
+        android:title="Dashboard"
+        android:icon="@drawable/ic_dashboard_black_24dp"/>
+
+    <item
         android:id="@+id/leadership"
-        android:title="Leadership"
-        android:icon="@drawable/ic_message_black_24dp"/>
+        android:title="Leaders"
+        android:icon="@drawable/ic_groups"/>
 
     <item
         android:id="@+id/downloads"

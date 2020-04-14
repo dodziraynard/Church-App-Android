@@ -1,29 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".DashboardFragment">
-
+    tools:context=".fragments.DashboardFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@mipmap/back">
+        android:background="@mipmap/bg">
+
+        <ImageButton
+            android:id="@+id/logo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="20dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
+            android:src="@mipmap/logo"/>
 
         <ScrollView
+            android:id="@+id/scrollView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:fitsSystemWindows="true"
+            android:layout_below="@+id/logo">
 
             <GridLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fitsSystemWindows="true"
                 android:columnCount="3"
                 android:padding="10dp"
-                android:rowCount="3"
+                android:rowCount="2"
                 android:orientation="horizontal"
-                android:layout_gravity="center">
+                android:layout_gravity="center_horizontal">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -37,20 +53,19 @@
 
                     <ImageButton
                         android:id="@+id/preachingBtn"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:background="@drawable/home_photos" />
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        android:background="@drawable/ic_audio" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="Preachings"
+                        android:text="Audios"
                         app:itemIconTint="@drawable/selector"
                         app:itemTextColor="@drawable/selector"
                         android:textAlignment="center"/>
                 </LinearLayout>
-
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -62,20 +77,20 @@
                     android:gravity="fill"
                     android:layout_margin="10dp">
 
-                    <Button
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:background="@mipmap/back"/>
+                    <ImageButton
+                        android:id="@+id/materialsBtn"
+                          android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        android:background="@drawable/ic_library_books_black_24dp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="Materials"
+                        android:text="Library"
                         android:textAlignment="center"
                         android:textColor="@android:color/white"/>
                 </LinearLayout>
-
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -89,9 +104,9 @@
 
                     <ImageButton
                         android:id="@+id/videoBtn"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:background="@drawable/home_photos" />
+                          android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        android:background="@drawable/ic_video" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -112,16 +127,17 @@
                     android:gravity="fill"
                     android:layout_margin="10dp">
 
-                    <Button
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:background="@mipmap/back"/>
+                    <ImageButton
+                        android:id="@+id/meBtn"
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        android:background="@drawable/ic_user" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="Give"
+                        android:text="Me"
                         android:textAlignment="center"
                         android:textColor="@android:color/white"/>
                 </LinearLayout>
@@ -136,10 +152,11 @@
                     android:gravity="fill"
                     android:layout_margin="10dp">
 
-                    <Button
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:background="@mipmap/back"/>
+                    <ImageButton
+                        android:id="@+id/helpBtn"
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        android:background="@drawable/ic_help"/>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -149,7 +166,6 @@
                         android:textAlignment="center"
                         android:textColor="@android:color/white"/>
                 </LinearLayout>
-
 
                 <LinearLayout
                     android:id="@+id/admin"
@@ -162,11 +178,11 @@
                     android:gravity="fill"
                     android:layout_margin="10dp">
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/adminBtn"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:background="@mipmap/back"/>
+                          android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        android:background="@drawable/id_admin"/>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -179,6 +195,19 @@
             </GridLayout>
         </ScrollView>
 
+        <Button
+            android:id="@+id/feedBackBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/feed_back"
+            android:background="@android:color/transparent"
+            android:outlineProvider="none"
+            android:textColor="@android:color/white"
+            android:textAllCaps="false"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="40dp"
+            android:layout_alignParentEnd="true"
+            android:backgroundTint="@android:color/transparent"/>
     </RelativeLayout>
 
 </FrameLayout>

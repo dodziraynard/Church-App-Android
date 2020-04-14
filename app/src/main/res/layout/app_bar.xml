@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:titleTextColor="@android:color/white"
-    android:background="@android:color/darker_gray"
+    android:background="@color/colorPrimary"
     app:subtitleTextColor="@android:color/white"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">

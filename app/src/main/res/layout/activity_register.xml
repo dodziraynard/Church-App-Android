@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAsh"
+    tools:context=".activities.RegisterActivity">
+
+    <ScrollView
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.cardview.widget.CardView
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:backgroundTint="@android:color/white"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="10dp"
+            android:elevation="10dp">
+
+            <LinearLayout
+                android:padding="5dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:textAlignment="center"
+                    android:layout_height="wrap_content"
+                    android:textSize="30dp"
+                    android:layout_marginBottom="80dp"
+                    android:textColor="@android:color/black"
+                    android:text="REGISTER"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="USERNAME"
+                    android:textColor="@android:color/darker_gray"/>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/username"
+                    android:inputType="text"
+                    android:layout_width="match_parent"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="@android:color/darker_gray"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="FULL NAME"
+                    android:textColor="@android:color/darker_gray"/>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/fullName"
+                    android:inputType="text"
+                    android:layout_width="match_parent"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="@android:color/darker_gray"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="MOBILE"
+                    android:textColor="@android:color/darker_gray"/>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/mobile"
+                    android:inputType="text"
+                    android:layout_width="match_parent"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="@android:color/darker_gray"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="CHURCH ID"
+                    android:textColor="@android:color/darker_gray"/>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/churchId"
+                    android:inputType="text"
+                    android:layout_width="match_parent"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="@android:color/darker_gray"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="PASSWORD"
+                    android:textColor="@android:color/darker_gray"/>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/password"
+                    android:inputType="textPassword"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="@android:color/darker_gray"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="CONFIRM PASSWORD"
+                    android:textColor="@android:color/darker_gray"/>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/confPassword"
+                    android:inputType="textPassword"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="@android:color/darker_gray"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <Button
+                    android:id="@+id/submitBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Submit"
+                    android:textColor="@android:color/white"
+                    android:layout_below="@id/confPassword"
+                    android:layout_centerHorizontal="true"/>
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/confPassword"
+                    android:layout_centerHorizontal="true"/>
+
+                <TextView
+                    android:id="@+id/logInText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/submitBtn"
+                    android:textColor="#00aaff"
+                    android:textAlignment="center"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    android:textSize="20sp"
+                    android:text="Already have an account? Log in."/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </ScrollView>
+</RelativeLayout>

@@ -6,20 +6,50 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:backgroundTint="@android:color/white"
-    tools:context=".VideoActivity">
+    tools:context=".activities.VideoActivity">
 
-    <include
-        android:id="@+id/app_bar"
-        layout="@layout/app_bar">
-    </include>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/barContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="10dp">
+        <include
+            android:id="@+id/app_bar"
+            layout="@layout/app_bar">
+        </include>
+    </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_below="@id/app_bar"
+        android:layout_below="@id/barContainer"
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:backgroundTint="@android:color/white"
+        android:backgroundTint="@color/colorAsh"
         android:background="@android:color/white"/>
+    <TextView
+        android:id="@+id/infoText"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:layout_margin="5dp"
+        android:text=""
+        android:textSize="30sp"
+        android:layout_width="match_parent"
+        android:textColor="@android:color/darker_gray"
+        android:layout_height="wrap_content"/>
 
+    <FrameLayout
+        android:layout_below="@+id/barContainer"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/frameLayout"
+        android:background="@android:color/white">
+    </FrameLayout>
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_centerInParent="true"/>
 </RelativeLayout>

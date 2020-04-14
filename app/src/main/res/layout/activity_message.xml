@@ -1,0 +1,73 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAsh"
+    tools:context=".activities.MessageActivity">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/barContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="10dp">
+        <include
+            android:id="@+id/app_bar"
+            layout="@layout/app_bar">
+        </include>
+    </androidx.cardview.widget.CardView>
+
+    <ScrollView
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorWhite"
+            android:elevation="10dp"
+            app:cardCornerRadius="10dp"
+            android:layout_margin="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Type your details"
+                    android:textColor="@android:color/holo_blue_dark"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:layout_margin="30dp"/>
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/message"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:hint="Tap to start typing..."
+                    android:textColorHint="@android:color/darker_gray"
+                    android:textColor="@android:color/black"/>
+
+                <Button
+                    android:id="@+id/submitBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="SUBMIT"
+                    android:textColor="@color/colorWhite"
+                    android:layout_marginTop="50dp"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </ScrollView>
+
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+</RelativeLayout>

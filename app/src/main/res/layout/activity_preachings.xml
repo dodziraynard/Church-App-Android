@@ -1,35 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".PreachingsActivity"
+    tools:context=".activities.PreachingsActivity"
     android:background="@android:color/white">
 
-    <include
-        android:id="@+id/app_bar"
-        layout="@layout/app_bar">
-    </include>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/barContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="10dp">
+        <include
+            android:id="@+id/app_bar"
+            layout="@layout/app_bar">
+        </include>
+    </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_below="@id/app_bar"
+        android:layout_below="@id/barContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white"
         android:layout_above="@+id/playerCard"
         android:backgroundTint="@android:color/white"/>
 
+    <TextView
+        android:id="@+id/infoText"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:layout_margin="5dp"
+        android:text=""
+        android:textSize="30sp"
+        android:layout_width="match_parent"
+        android:textColor="@android:color/darker_gray"
+        android:layout_height="wrap_content"/>
+
+    <FrameLayout
+        android:layout_below="@+id/barContainer"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/frameLayout"
+        android:background="@android:color/white">
+    </FrameLayout>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/playerCard"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:elevation="10dp"
-        app:cardElevation="30dp"
-        app:cardCornerRadius="10dp"
-        android:layout_margin="5dp"
-        android:backgroundTint="@android:color/white"
+        android:backgroundTint="@color/colorPrimaryDark"
         android:layout_alignParentBottom="true">
 
         <RelativeLayout
@@ -42,12 +66,11 @@
                 android:id="@+id/currentTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:textAlignment="center"
                 android:singleLine="true"
                 android:ellipsize="end"
                 android:text="---Select item ---"/>
-
 
             <Button
                 android:id="@+id/btnPlay"
@@ -102,9 +125,17 @@
             <SeekBar
                 android:id="@+id/seekBar"
                 android:translationZ="100dp"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"/>
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
+
+    <ProgressBar
+        android:id="@+id/progress_circular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_centerInParent="true"/>
 </RelativeLayout>

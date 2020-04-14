@@ -19,19 +19,22 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+
             <LinearLayout
                 android:id="@+id/content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginBottom="0dp"
                 android:orientation="horizontal"
-                android:padding="5dp"
-                android:layout_margin="0dp">
+                android:padding="5dp">
 
                 <ImageView
                     android:id="@+id/image"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@mipmap/back"/>
+                    android:src="@mipmap/back" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -47,84 +50,46 @@
                             android:id="@+id/title"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_toStartOf="@id/btnPlay"
-                            android:text="God is good long long title"
-                            android:layout_marginTop="5dp"
                             android:layout_marginStart="5dp"
+                            android:layout_marginTop="10dp"
+                            android:backgroundTint="@android:color/white"
+                            android:ellipsize="end"
                             android:singleLine="true"
-                            android:ellipsize="middle"
-                            android:textSize="15sp"
                             android:textColor="@android:color/black"
-                            android:backgroundTint="@android:color/white"/>
-
-<!--                        <Button-->
-<!--                            android:id="@+id/btnPlay"-->
-<!--                            android:layout_toStartOf="@+id/btnDownload"-->
-<!--                            android:layout_width="30dp"-->
-<!--                            android:layout_height="40dp"-->
-<!--                            android:layout_marginStart="10dp"-->
-<!--                            android:layout_marginEnd="10dp"-->
-<!--                            android:drawableTop="@drawable/ic_play_circle_outline_black_24dp"-->
-<!--                            android:backgroundTint="@android:color/white"/>-->
-
-<!--                        <Button-->
-<!--                            android:id="@+id/btnPause"-->
-<!--                            android:visibility="invisible"-->
-<!--                            android:layout_toStartOf="@+id/btnDownload"-->
-<!--                            android:layout_width="30dp"-->
-<!--                            android:layout_height="40dp"-->
-<!--                            android:layout_marginStart="10dp"-->
-<!--                            android:layout_marginEnd="10dp"-->
-<!--                            android:drawableTop="@drawable/ic_pause_circle_outline_black_24dp"-->
-<!--                            android:backgroundTint="@android:color/white"/>-->
+                            android:textSize="15sp" />
 
                         <Button
                             android:id="@+id/btnDownload"
                             android:layout_width="30dp"
                             android:layout_height="40dp"
+                            android:layout_alignParentEnd="true"
                             android:layout_marginStart="10dp"
                             android:layout_marginEnd="10dp"
-                            android:drawableTop="@drawable/ic_file_download_black_24dp"
                             android:backgroundTint="@android:color/white"
-                            android:layout_alignParentEnd="true">
-                        </Button>
+                            android:drawableTop="@drawable/ic_file_download_black_24dp"/>
                     </RelativeLayout>
 
                     <TextView
                         android:id="@+id/desc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="God is good God is good God is good"
-                        android:singleLine="true"
                         android:layout_marginStart="5dp"
-                        android:ellipsize="middle"
-                        android:textSize="15sp"
-                        android:textColor="@android:color/darker_gray"
-                        android:backgroundTint="@android:color/white"/>
-
-                    <TextView
-                        android:id="@+id/preacher"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Rev. Pastor Dodzi"
+                        android:backgroundTint="@android:color/white"
+                        android:ellipsize="end"
                         android:singleLine="true"
-                        android:layout_marginStart="5dp"
-                        android:ellipsize="middle"
-                        android:textSize="15sp"
                         android:textColor="@android:color/darker_gray"
-                        android:backgroundTint="@android:color/white"/>
+                        android:textSize="15sp" />
 
                     <TextView
                         android:id="@+id/date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="12/01/2010"
-                        android:textAlignment="textEnd"
+                        android:backgroundTint="@android:color/white"
                         android:maxLines="1"
-                        android:textStyle="italic"
-                        android:textSize="12sp"
+                        android:textAlignment="textEnd"
                         android:textColor="@android:color/darker_gray"
-                        android:backgroundTint="@android:color/white"/>
+                        android:textSize="12sp"
+                        android:textStyle="italic" />
                 </LinearLayout>
             </LinearLayout>
 

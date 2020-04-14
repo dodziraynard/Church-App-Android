@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context=".activities.FeedbackActivity">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/barContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="10dp">
+        <include
+            android:id="@+id/app_bar"
+            layout="@layout/app_bar">
+        </include>
+    </androidx.cardview.widget.CardView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/barContainer">
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:elevation="10dp"
+            android:backgroundTint="@android:color/white"
+            android:layout_margin="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="4dp">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:src="@mipmap/logo"
+                    android:backgroundTint="@android:color/transparent"/>
+
+                <TextView
+                    android:id="@+id/question"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:layout_below="@id/imageView"
+                    android:text="Hi, what can you say about the app to the developer?"
+                    android:textColor="@android:color/holo_blue_dark"
+                    android:textSize="20sp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/question"
+                    android:layout_marginTop="5dp"
+                    android:background="@android:color/darker_gray"/>
+                <EditText
+                    android:id="@+id/editText"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_below="@+id/question"
+                    android:textColor="@android:color/black"
+                    android:hint="Type your inquiry, bug report or feature suggestion."
+                    android:textColorHint="@android:color/darker_gray"
+                    android:layout_marginTop="10dp"/>
+
+                <Button
+                    android:id="@+id/submitBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SUBMIT"
+                    android:layout_below="@+id/editText"
+                    android:textColor="@android:color/white"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"/>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_below="@id/submitBtn"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="20dp"
+                    app:cardElevation="0dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:backgroundTint="@android:color/white"
+                    android:layout_height="wrap_content">
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@android:color/darker_gray"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:id="@+id/contactDev"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@android:color/holo_blue_dark"
+                            android:textAlignment="center"
+                            android:layout_marginBottom="20dp"
+                            android:text="CONTACT DEVELOPER"/>
+
+                        <TextView
+                            android:id="@+id/emailTitle"
+                            android:layout_below="@id/contactDev"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textColor="@android:color/holo_blue_dark"
+                            android:layout_marginLeft="10dp"
+                            android:text="Email: "/>
+
+                        <TextView
+                            android:id="@+id/email"
+                            android:layout_below="@id/emailTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textColor="@android:color/holo_blue_dark"
+                            android:layout_marginLeft="10dp"
+                            android:text="dodzireynard@gmail.com"/>
+
+                        <TextView
+                            android:id="@+id/phoneTitle"
+                            android:layout_below="@id/email"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textColor="@android:color/holo_blue_dark"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginLeft="10dp"
+                            android:text="Phone: "/>
+
+                        <TextView
+                            android:id="@+id/phone"
+                            android:layout_below="@id/phoneTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textColor="@android:color/holo_blue_dark"
+                            android:layout_marginLeft="10dp"
+                            android:text="+233249626071"/>
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+    </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+</RelativeLayout>
