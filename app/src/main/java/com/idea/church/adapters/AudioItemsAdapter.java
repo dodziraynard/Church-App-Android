@@ -4,14 +4,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.idea.church.models.Audio;
 import com.idea.church.R;
 import java.util.ArrayList;
@@ -56,9 +54,9 @@ public class AudioItemsAdapter extends RecyclerView.Adapter<AudioItemsAdapter.Au
         viewHolder.title.setText(audio.getTitle());
         viewHolder.desc.setText(audio.getDesc());
 
-        Glide.with(context)
-                .load(audio.getImage())
-                .into(viewHolder.image);
+//        Glide.with(context)
+//                .load(audio.getImage())
+//                .into(viewHolder.image);
 
     }
 
@@ -69,11 +67,11 @@ public class AudioItemsAdapter extends RecyclerView.Adapter<AudioItemsAdapter.Au
     }
 
     class AudioViewHolder extends RecyclerView.ViewHolder {
-        Button buttonDownload;
+        TextView buttonDownload;
         ImageView image;
         TextView title;
         TextView desc;
-        CardView card;
+        RelativeLayout relativeLayout;
 
         AudioViewHolder(final View itemView){
             super(itemView);
@@ -82,14 +80,14 @@ public class AudioItemsAdapter extends RecyclerView.Adapter<AudioItemsAdapter.Au
             desc = itemView.findViewById(R.id.desc);
 
             buttonDownload = itemView.findViewById(R.id.btnDownload);
-            card = itemView.findViewById(R.id.audio_item);
+            relativeLayout = itemView.findViewById(R.id.audio_item);
             image = itemView.findViewById(R.id.image);
 
-            card.setOnClickListener(new View.OnClickListener() {
+            relativeLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (listener != null)
-                        listener.onCardClickListener(card, getLayoutPosition());
+                        listener.onCardClickListener(relativeLayout, getLayoutPosition());
                 }
             });
 

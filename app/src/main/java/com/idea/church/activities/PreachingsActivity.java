@@ -82,7 +82,7 @@ public class PreachingsActivity extends AppCompatActivity implements SearchView.
 
     Button buttonPlay;
     Button buttonPause;
-    Button buttonDownload;
+    TextView buttonDownload;
     TextView duration;
     TextView currentTitle;
     TextView elapsed;

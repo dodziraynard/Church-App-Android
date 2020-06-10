@@ -19,34 +19,52 @@
         </include>
     </androidx.cardview.widget.CardView>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_below="@id/barContainer"
-        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white"
-        android:layout_above="@+id/playerCard"
-        android:backgroundTint="@android:color/white"/>
+        android:layout_above="@+id/playerCard">
 
-    <TextView
-        android:id="@+id/infoText"
-        android:visibility="gone"
-        android:layout_centerInParent="true"
-        android:layout_margin="5dp"
-        android:text=""
-        android:textSize="30sp"
-        android:layout_width="match_parent"
-        android:textColor="@android:color/darker_gray"
-        android:layout_height="wrap_content"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <FrameLayout
-        android:layout_below="@+id/barContainer"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/frameLayout"
-        android:background="@android:color/white">
-    </FrameLayout>
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:scaleType="fitXY"
+                android:layout_height="200dp"
+                android:src="@mipmap/wave"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_below="@id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"
+                android:backgroundTint="@android:color/white"/>
+
+            <TextView
+                android:id="@+id/infoText"
+                android:visibility="gone"
+                android:layout_centerInParent="true"
+                android:layout_margin="5dp"
+                android:text=""
+                android:textSize="30sp"
+                android:layout_width="match_parent"
+                android:textColor="@android:color/darker_gray"
+                android:layout_height="wrap_content"/>
+
+            <FrameLayout
+                android:layout_below="@id/imageView"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/frameLayout"
+                android:background="@android:color/white">
+            </FrameLayout>
+        </RelativeLayout>
+    </ScrollView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/playerCard"

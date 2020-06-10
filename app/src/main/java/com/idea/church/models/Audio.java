@@ -18,15 +18,11 @@ public class Audio implements Parcelable {
     @SerializedName("preacher")
     private String artist;
 
-    @SerializedName("image")
-    private String image;
-
-    public Audio(String data, String title, String desc, String artist, String image) {
+    public Audio(String data, String title, String desc, String artist) {
         this.data = data;
         this.title = title;
         this.desc = desc;
         this.artist = artist;
-        this.image = image;
     }
 
     public String getData() {
@@ -45,9 +41,6 @@ public class Audio implements Parcelable {
         return artist;
     }
 
-    public String getImage() {
-        return image;
-    }
 
     @Override
     public int describeContents() {
@@ -63,7 +56,6 @@ public class Audio implements Parcelable {
         data = in.readString();
         desc = in.readString();
         artist = in.readString();
-        image = in.readString();
         title = in.readString();
     }
 

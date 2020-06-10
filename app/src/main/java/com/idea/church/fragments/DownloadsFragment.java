@@ -27,6 +27,7 @@ public class DownloadsFragment extends Fragment {
     private TabAdapter adapter;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    View view;
 
     public DownloadsFragment() {
         // Required empty public constructor
@@ -37,11 +38,18 @@ public class DownloadsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_downloads, container, false);
+        view = inflater.inflate(R.layout.fragment_downloads, container, false);
+        init();
 
         // Change title on action bar.
         Objects.requireNonNull(getActivity()).setTitle("Downloads");
 
+        viewPager.setAdapter(adapter);
+        tabLayout.setupWithViewPager(viewPager);
+        return view;
+    }
+
+    private void init(){
         viewPager = view.findViewById(R.id.viewPager);
         tabLayout = view.findViewById(R.id.tabLayout);
         adapter = new TabAdapter(getActivity().getSupportFragmentManager());
@@ -49,9 +57,5 @@ public class DownloadsFragment extends Fragment {
         adapter.addFragment(new DownloadedVideo(), "VIDEOS");
         adapter.addFragment(new DownloadedMaterials(), "MATERIALS");
 
-        viewPager.setAdapter(adapter);
-        tabLayout.setupWithViewPager(viewPager);
-
-        return view;
     }
 }

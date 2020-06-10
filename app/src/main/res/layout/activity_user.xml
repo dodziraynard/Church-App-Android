@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAsh"
+    tools:context=".activities.UserActivity">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/barContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="10dp">
+        <include
+            android:id="@+id/app_bar"
+            layout="@layout/app_bar">
+        </include>
+    </androidx.cardview.widget.CardView>
+    
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/barContainer">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/profile"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:text="Profile"
+                android:textColor="@color/colorPrimaryDark"
+                android:drawableLeft="@drawable/ic_person"
+                android:backgroundTint="@color/colorWhite"
+                android:textAlignment="textStart"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"/>
+
+            <Button
+                android:id="@+id/testimony"
+                android:layout_below="@+id/profile"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:text="Testimony"
+                android:textColor="@color/colorPrimaryDark"
+                android:drawableLeft="@drawable/ic_speaker"
+                android:backgroundTint="@color/colorWhite"
+                android:textAlignment="textStart"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"/>
+
+            <Button
+                android:id="@+id/prayerRequest"
+                android:layout_below="@id/testimony"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:text="Prayer Request"
+                android:textColor="@color/colorPrimaryDark"
+                android:drawableLeft="@drawable/ic_message"
+                android:backgroundTint="@color/colorWhite"
+                android:textAlignment="textStart"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"/>
+
+            <Button
+                android:id="@+id/tithe_donations"
+                android:layout_below="@id/prayerRequest"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:text="Tithe and Donations"
+                android:textColor="@color/colorPrimaryDark"
+                android:drawableLeft="@drawable/ic_money"
+                android:backgroundTint="@color/colorWhite"
+                android:textAlignment="textStart"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"/>
+
+            <Button
+                android:id="@+id/logout"
+                android:layout_below="@id/tithe_donations"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:text="Log out"
+                android:textColor="@color/colorPrimaryDark"
+                android:drawableLeft="@drawable/ic_lock"
+                android:backgroundTint="@color/colorWhite"
+                android:textAlignment="textStart"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"/>
+
+        </RelativeLayout>
+
+    </ScrollView>
+</RelativeLayout>

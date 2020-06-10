@@ -62,7 +62,7 @@ public class DownloadedPreachings extends Fragment {
         for (File file : files) {
             String data = file.getPath();
             String title = file.getName();
-            audios.add(new Audio(data, title, "", "", ""));
+            audios.add(new Audio(data, title, "", ""));
         }
     }
 
