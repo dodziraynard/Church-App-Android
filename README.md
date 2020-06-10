@@ -1,12 +1,12 @@
 # Church App - Android Client
 
-This is the client side version of the chuch application 
+This is the client side version of the church application 
 
 
 ## Installation
 Clone this repository and import into **Android Studio**
 ```bash
-git clone git@github.com:wolox/<reponame>.git
+git clone https://github.com/dodziraynard/Church-App-Android.git
 ```
 
 ## Configuration
